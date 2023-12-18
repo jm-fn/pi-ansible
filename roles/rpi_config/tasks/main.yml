@@ -1,0 +1,7 @@
+---
+- name: "Uninstall unnecessary programs"
+  import_tasks: "uninstall.yml"
+
+- name: "Install programs"
+  import_tasks: "install.yml"
+  become: true

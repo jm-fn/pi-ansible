@@ -1,0 +1,8 @@
+---
+# Uninstall unneeded packages
+- name: "Uninstall packages"
+  ansible.builtin.apt:
+    pkg: "{{ pkgs_to_remove }}"
+    state: 'absent'
+    purge: true
+  become: true

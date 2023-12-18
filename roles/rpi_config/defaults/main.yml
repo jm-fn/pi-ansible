@@ -1,0 +1,8 @@
+---
+# Default variables
+pkgs_to_install:
+  - "vim"
+  - "ufw"
+
+pkgs_to_remove:
+  - "chromium-browser"

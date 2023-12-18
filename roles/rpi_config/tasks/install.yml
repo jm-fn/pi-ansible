@@ -1,0 +1,16 @@
+---
+- name: "Update package list"
+  ansible.builtin.apt:
+    update_cache: 'yes'
+  become: true
+
+- name: "Upgrade everything"
+  ansible.builtin.apt:
+    upgrade: full
+  become: true
+
+- name: "Install programs"
+  ansible.builtin.apt:
+    pkg: "{{ pkgs_to_install }}"
+    state: 'present'
+  become: true
