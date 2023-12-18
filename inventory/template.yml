@@ -1,6 +1,6 @@
 pi_servers:
   hosts:
-    main_pi:
+    your_pi_name:
       ansible_host: <host_ip_here>
       ansible_user: <username_here>
       ansible_become_password: <username_password_here>
