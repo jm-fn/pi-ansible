@@ -1,0 +1,20 @@
+---
+# Change sshd configuration to safer values
+
+- name: Configure sshd
+  become: true
+  lineinfile:
+    path: "/etc/ssh/sshd_config"
+    regex: "^(#)?{{item.key}}"
+    line: "{{item.key}} {{item.value}}"
+    state: present
+    insertbefore: "^(#)?Match"
+    firstmatch: true
+  loop:
+    - { key: "PermitRootLogin", value: "no" }
+    - { key: "PasswordAuthentication", value: "no" } 
+    - { key: "PubkeyAuthentication", value: "yes" } 
+    - { key: "UsePAM", value: "no" } 
+    - { key: "X11Forwarding", value: "no" } 
+  notify:
+    - Restart sshd

@@ -8,3 +8,6 @@
 
 - name: "Set up UFW firewall"
   import_tasks: "ufw.yml"
+
+- name: configure sshd
+  import_tasks: "sshd_config.yml"
