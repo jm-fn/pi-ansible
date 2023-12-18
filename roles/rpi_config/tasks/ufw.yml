@@ -1,0 +1,46 @@
+---
+# Set up UFW firewall
+
+- name: Make sure UFW is installed
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+
+- name: Set default incoming policy to deny
+  community.general.ufw:
+    direction: 'incoming'
+    policy: 'deny'
+  become: true
+  tags:
+    - 'uwf'
+
+- name: Set default outgoing policy to allow
+  community.general.ufw:
+    direction: 'outgoing'
+    policy: 'allow'
+  become: true
+  tags:
+    - 'uwf'
+
+- name: Allow ssh access
+  community.general.ufw:
+    rule: 'limit'  # limit incoming connections to 6connections/30sec
+    port: 'ssh'
+    proto: 'tcp'
+  become: true
+  tags:
+    - 'uwf'
+
+- name: Set logging
+  community.general.ufw:
+    logging: 'on'
+  become: true
+  tags:
+    - 'uwf'
+
+- name: Enable UWF
+  community.general.ufw:
+    state: 'enabled'
+  become: true
+  tags:
+    - 'uwf'

@@ -5,3 +5,6 @@
 - name: "Install programs"
   import_tasks: "install.yml"
   become: true
+
+- name: "Set up UFW firewall"
+  import_tasks: "ufw.yml"
