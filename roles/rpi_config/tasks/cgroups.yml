@@ -1,0 +1,21 @@
+---
+# Modify Cgroups so that they contain memory cgroup
+# this is necessary for k3s clusters
+
+- name: "Ensure memory cgroup not added"
+  command: grep -c "cgroup_memory" /boot/firmware/cmdline.txt
+  register: cgroup_added
+  check_mode: false
+  ignore_errors: true
+  changed_when: false
+
+- name: Add memory cgroup
+  become: true
+  lineinfile:
+    path: "/boot/firmware/cmdline.txt"
+    regex: "^(.*)(?!cgroup_memory.*)$"
+    line: '\g<1> cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
+    backrefs: true
+  when: add_memory_cgroup | bool and cgroup_added.stdout | int < 1
+  notify:
+    - Reboot

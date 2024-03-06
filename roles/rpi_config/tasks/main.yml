@@ -21,3 +21,8 @@
   import_tasks: wifi.yml
   tags:
     - wifi
+
+- name: configure cgroups
+  import_tasks: cgroups.yml
+  tags:
+    - cgroups
