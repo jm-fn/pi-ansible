@@ -6,3 +6,4 @@ pkgs_to_install:
 
 pkgs_to_remove:
   - "chromium-browser"
+disable_wifi: false
