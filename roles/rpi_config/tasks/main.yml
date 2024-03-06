@@ -16,3 +16,8 @@
   import_tasks: sudo_nopasswd.yml
   tags:
     - nopasswd
+
+- name: configure wifi
+  import_tasks: wifi.yml
+  tags:
+    - wifi

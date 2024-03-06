@@ -1,0 +1,16 @@
+---
+# Handle WiFi Configuration
+#
+- name: Disable Wifi
+  become: true
+  lineinfile:
+    path: "/boot/firmware/config.txt"
+    regex: "^(# )?{{item}}"
+    line: "{{item}}"
+    state: present
+  loop:
+    - "dtoverlay=disable-wifi"
+    - "dtoverlay=disable-bt"
+  notify:
+    - Reboot
+  when: disable_wifi | bool
