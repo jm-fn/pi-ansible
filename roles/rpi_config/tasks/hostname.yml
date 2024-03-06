@@ -1,0 +1,19 @@
+---
+# Set rpi's hostname
+
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: "{{ pi_hostname }}"
+  become: true
+  when: pi_hostname is defined and pi_hostname | length > 0
+
+- name: Add hostname to /etc/hosts
+  become: true
+  when: pi_hostname is defined and pi_hostname | length > 0
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    search_string: "127.0.0.1 +{{ pi_hostname }}"
+    line: "127.0.0.1 {{ pi_hostname }}"
+    owner: root
+    group: root
+    mode: '0644'

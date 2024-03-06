@@ -26,3 +26,8 @@
   import_tasks: cgroups.yml
   tags:
     - cgroups
+
+- name: Change hostname
+  import_tasks: hostname.yml
+  tags:
+    - hostname
