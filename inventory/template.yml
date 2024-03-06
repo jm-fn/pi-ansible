@@ -4,3 +4,18 @@ pi_servers:
       ansible_host: <host_ip_here>
       ansible_user: <username_here>
       ansible_become_password: <username_password_here>
+    # Optional variables
+      disable_ufw: <bool>
+      add_memory_cgroup: <bool>
+      pi_hostname: <string>
+      disable_wifi: <bool>
+
+    # Examle of configuration for k3s server
+    some_k3s_server:
+      ansible_host: <host_ip_here>
+      ansible_user: <username_here>
+      ansible_become_password: <username_password_here>
+      disable_ufw: true # to enable all k3s ports.
+      add_memory_cgroup: true # memory cgroup has to be added for k3s to work
+      pi_hostname: <string> # has to be set unique for each k3s node
+      disable_wifi: true # if the nodes are connected via ethernet
