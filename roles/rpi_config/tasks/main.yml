@@ -1,16 +1,23 @@
 ---
 - name: "Uninstall unnecessary programs"
   import_tasks: "uninstall.yml"
+  tags:
+    - uninstall
 
 - name: "Install programs"
   import_tasks: "install.yml"
-  become: true
+  tags:
+    - install
 
 - name: "Set up UFW firewall"
   import_tasks: "ufw.yml"
+  tags:
+    - firewall
 
 - name: configure sshd
   import_tasks: "sshd_config.yml"
+  tags:
+    - sshd
 
 - name: confugure sudoers
   import_tasks: sudo_nopasswd.yml
