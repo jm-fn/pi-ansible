@@ -1,0 +1,6 @@
+---
+- name: Config rpi
+  hosts: servers
+  gather_facts: false
+  roles:
+    - rpi_config
