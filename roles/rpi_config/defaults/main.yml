@@ -3,9 +3,11 @@
 pkgs_to_install:
   - "vim"
   - "ufw"
+  - "python3-all"
 
 pkgs_to_remove:
   - "chromium-browser"
+
 disable_wifi: false
 add_memory_cgroup: false
 disable_ufw: false
