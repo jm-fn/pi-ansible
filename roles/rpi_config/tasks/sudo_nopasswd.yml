@@ -1,0 +1,10 @@
+---
+# remove NOPASSWD from sudoers
+- name: Remove nopasswd from sudoers
+  become: true
+  lineinfile:
+    path: "/etc/sudoers.d/010_pi-nopasswd"
+    state: present
+    regexp: '^{{ ansible_user}}\s+ALL='
+    line: '{{ ansible_user }} ALL=(ALL) ALL'
+    validate: '/usr/sbin/visudo -cf %s'

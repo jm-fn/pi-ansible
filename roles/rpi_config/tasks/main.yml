@@ -11,3 +11,8 @@
 
 - name: configure sshd
   import_tasks: "sshd_config.yml"
+
+- name: confugure sudoers
+  import_tasks: sudo_nopasswd.yml
+  tags:
+    - nopasswd
